@@ -9,12 +9,17 @@ public class PlayerMovement : MonoBehaviour
 {
     //private PlayerStats player;
     private Rigidbody2D rb;
-    public Camera cam;
+    private Magnet magnet;
+    private Lash lash;
+    //public Camera cam;
 
-    public Transform target;
+    public Transform targetLookTowards;
     [SerializeField] private float speed;
     [SerializeField] private float maxVelocity;
     [SerializeField] private float rotationSpeed;
+    private LashSegment[] lashSegments;
+    [SerializeField] private int maxLinks = 8;
+
     //[SerializeField] private float stability = 0.3f;
     //[SerializeField] private float angularSpeed = 2.0f;
 
@@ -23,11 +28,20 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        
+        lashSegments = FindObjectsOfType<LashSegment>();
+        lash = FindObjectOfType<Lash>();
+        //System.Array.Reverse(lashSegments);
+        magnet = FindObjectOfType<Magnet>();
+
     }
 
     private void Update()
     {
-        Rotation();
+        if (Input.GetKeyDown("space")) 
+        {
+            MagnetToggle();
+        }
     }
 
     // Update is called once per frame
@@ -38,13 +52,30 @@ public class PlayerMovement : MonoBehaviour
 
         MoveUp(yAxis);
         MoveSideways(xAxis);
+        Rotation();
+
+        if (Input.GetKeyDown("r")) 
+        {
+            if (lash.numLinks < maxLinks) 
+            {
+                lash.AddLink();
+
+            }            
+        }
+
+        if (Input.GetKeyDown("f"))
+        {
+            if (lash.numLinks > 1)
+            lash.RemoveLink();
+        }
+
         //RotatePlayer();
 
 
         ClampVelocity();
     }
 
-    private void RotatePlayer()
+    /*private void RotatePlayer()
     {
         Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
@@ -52,13 +83,13 @@ public class PlayerMovement : MonoBehaviour
 
         transform.up = direction;
 
-    }
+    }*/
 
     private void Rotation()
     {
 
         var step = rotationSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, target.rotation, step);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetLookTowards.rotation, step);
 
         /*
         Vector2 predictedUp = Quaternion.AngleAxis(
@@ -70,7 +101,45 @@ public class PlayerMovement : MonoBehaviour
         rb.AddTorque(torqueVector.magnitude * angularSpeed);*/
     }
 
+    public void MagnetToggle() 
+    {
+        magnet = FindObjectOfType<Magnet>();
 
+        if (magnet.isActiveAndEnabled == true) 
+        {
+            DeactivateMagnet();
+        }
+
+        else 
+        {
+            ActivateMagnet();
+        }
+    }
+
+    IEnumerator DisplayLash(bool shouldDisplay) 
+    {
+        lashSegments = FindObjectsOfType<LashSegment>();
+        System.Array.Reverse(lashSegments);
+
+        foreach (LashSegment lash in lashSegments)
+        {
+            yield return new WaitForSeconds(.03f);
+            lash.GetComponent<SpriteRenderer>().enabled = shouldDisplay;
+        }
+    }
+
+    public void ActivateMagnet() 
+    {
+        magnet.enabled = true;
+        StartCoroutine(DisplayLash(true));
+
+    }
+
+    public void DeactivateMagnet() 
+    {
+        magnet.enabled = false;
+        StartCoroutine(DisplayLash(false));
+    }
 
     private void ClampVelocity() 
     {
@@ -94,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(force);
     }
 
-    private void Boost()
+    /*private void Boost()
     {
         Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
@@ -102,5 +171,5 @@ public class PlayerMovement : MonoBehaviour
         Vector2 force = direction * speed;
 
         rb.AddForce(force);
-    }
+    }*/
 }
