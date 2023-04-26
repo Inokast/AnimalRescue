@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 //Assignment/Lab/Project: Mobile Game Final project 
 //Name: Daniel Sanchez
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("space")) 
+        if (CrossPlatformInputManager.GetButtonDown("LashButton")) 
         {
             MagnetToggle();
         }
@@ -47,14 +48,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float yAxis = Input.GetAxisRaw("Vertical");
-        float xAxis = Input.GetAxisRaw("Horizontal");
+        float yAxis = CrossPlatformInputManager.GetAxisRaw("Vertical");
+        float xAxis = CrossPlatformInputManager.GetAxisRaw("Horizontal");
 
         MoveUp(yAxis);
         MoveSideways(xAxis);
         Rotation();
 
-        if (Input.GetKeyDown("r")) 
+        if (CrossPlatformInputManager.GetButtonDown("r")) 
         {
             if (lash.numLinks < maxLinks) 
             {
@@ -63,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
             }            
         }
 
-        if (Input.GetKeyDown("f"))
+        if (CrossPlatformInputManager.GetButtonDown("f"))
         {
             if (lash.numLinks > 1)
             lash.RemoveLink();
