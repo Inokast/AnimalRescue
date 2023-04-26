@@ -14,6 +14,11 @@ public class UIController : MonoBehaviour
     [Header("Menu Connections")]
     [SerializeField] GameObject instructionPanel;
     [SerializeField] GameObject[] instructionPanels;
+
+    [SerializeField] GameObject creditsPanel;
+
+    [SerializeField] GameObject levelSelectPanel;
+
     private int currentPage = 0;
 
     private SoundFXController sfx;
@@ -33,6 +38,7 @@ public class UIController : MonoBehaviour
         goalText.text = "X " + currentScore.ToString() + " / " + levelGoal;
     }
 
+    #region Menu UI
     public void ColorScore() // Changes star counter color to yellow
     {
         goalText.color = Color.yellow;
@@ -40,31 +46,40 @@ public class UIController : MonoBehaviour
     
     public void LoadInstructions()
     {
-        sfx.PlayMenuClick();
+        instructionPanel.SetActive(true);
         //SceneManager.LoadScene("Instructions");
     }
 
     public void LoadCredits()
     {
-        sfx.PlayMenuClick();
+        creditsPanel.SetActive(true);
+        //sfx.PlayMenuClick();
         //SceneManager.LoadScene("Credits");
+    }
+
+    public void LoadLevelSelect() 
+    {
+        levelSelectPanel.SetActive(true);
     }
 
     public void LoadMenu()
     {
-        sfx.PlayMenuClick();
+        instructionPanel.SetActive(false);
+        creditsPanel.SetActive(false);
+        levelSelectPanel.SetActive(false);
+        //sfx.PlayMenuClick();
         //SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()
     {
-        sfx.PlayMenuClick();
+        //sfx.PlayMenuClick();
         Application.Quit();
     }
 
     public void NextPage() // On instructions menu
     {
-        sfx.PlayMenuClick();
+        //sfx.PlayMenuClick();
         int lastPage = currentPage;
         currentPage++;
 
@@ -76,4 +91,6 @@ public class UIController : MonoBehaviour
         instructionPanels[currentPage].SetActive(true);
         instructionPanels[lastPage].SetActive(false);
     }
+
+    #endregion
 }

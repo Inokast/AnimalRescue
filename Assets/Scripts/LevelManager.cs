@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,10 @@ public class LevelManager : MonoBehaviour
     private LevelTransitionScreen transition;
     [SerializeField] private string nextLevelString;
 
+    private void Start()
+    {
+        transition = FindObjectOfType<LevelTransitionScreen>();
+    }
     IEnumerator RestartLevel()
     {
         transition.StartTransition();
@@ -25,30 +30,15 @@ public class LevelManager : MonoBehaviour
 
         yield return new WaitForSeconds(transition.transitionTime);
 
-        string currentScene = SceneManager.GetActiveScene().name;
-
-        if (currentScene == "Menu")
-        {
-            SceneManager.LoadScene("Level1");
-        }
-
-        if (currentScene == "Level1")
-        {
-            SceneManager.LoadScene("Level2");
-        }
-
-        if (currentScene == "Level2")
-        {
-            SceneManager.LoadScene("Level3");
-        }
-
-        if (currentScene == "Level3")
-        {
-            SceneManager.LoadScene("EndScreen");
-        }
-
+        SceneManager.LoadScene(nextLevelString);
     }
 
+    //This function is mainly for the level selector feature in the main menu
+    public void LevelSelectbutton(string newLevelString) 
+    {
+        nextLevelString = newLevelString;
+        StartCoroutine(LoadNextLevel());
+    }
     public void NextLevel()
     {
         StartCoroutine(LoadNextLevel());
