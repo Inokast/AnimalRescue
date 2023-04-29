@@ -14,7 +14,7 @@ public class SoundFXController : MonoBehaviour
     private AudioSource menuClick;
     private AudioSource unlock;
 
-    private void Start()
+    /*private void Start()
     {
         soundFX = GetComponents<AudioSource>();
 
@@ -25,7 +25,7 @@ public class SoundFXController : MonoBehaviour
         launch = soundFX[4];
         menuClick = soundFX[5];
         unlock = soundFX[6];
-    }
+    }*/
 
     public void PlayCollectStar()
     {

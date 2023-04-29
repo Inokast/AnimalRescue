@@ -5,11 +5,17 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    [Header("Level Connections")]
-    [SerializeField] public Text goalText;
-    [SerializeField] GameObject keyOutlineIcon;
-    [SerializeField] GameObject keyIcon;
     private LevelTransitionScreen transition;
+
+    [Header("Level Connections")]
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject pauseDetailsPanel;
+    [SerializeField] private GameObject levelEndPanel;
+
+    [SerializeField] private GameObject pauseButton;
+    [SerializeField] private Text goalText;
+    [SerializeField] LevelManager levelManager;
+
 
     [Header("Menu Connections")]
     [SerializeField] GameObject instructionPanel;
@@ -37,6 +43,45 @@ public class UIController : MonoBehaviour
     {
         goalText.text = "X " + currentScore.ToString() + " / " + levelGoal;
     }
+
+    #region Level UI
+
+    public void PauseButton() 
+    {
+        if (pausePanel.activeSelf == false)
+        {
+            pausePanel.SetActive(true);
+            levelManager.PauseGame();
+        }
+
+        else 
+        {
+            pausePanel.SetActive(false);
+            levelManager.ResumeGame();
+        }
+        
+    }
+
+    public void RetryButton() 
+    {
+        levelManager.Restart();
+    }
+
+    public void ReturnToMenuButton() 
+    {
+        levelManager.LevelSelectButton("Menu");
+    }
+
+    public void ShowEndPanel() 
+    {
+        PauseButton();
+        pauseButton.SetActive(false);
+        pauseDetailsPanel.SetActive(false);
+        levelEndPanel.SetActive(true);
+
+    }
+
+    #endregion
 
     #region Menu UI
     public void ColorScore() // Changes star counter color to yellow
