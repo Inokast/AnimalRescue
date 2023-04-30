@@ -23,17 +23,17 @@ public class Magnet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Ball"))
+        if (other.CompareTag("Ball") || other.CompareTag("Metal"))
         {
             selectedObjects.Add(other.GetComponent<Rigidbody2D>());
-            other.GetComponent<Rigidbody2D>().gravityScale = 0;
+            other.GetComponent<Rigidbody2D>().gravityScale = .5f;
 
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Ball"))
+        if (other.CompareTag("Ball") || other.CompareTag("Metal"))
         {
             selectedObjects.Remove(other.GetComponent<Rigidbody2D>());
             other.GetComponent<Rigidbody2D>().gravityScale = 1;

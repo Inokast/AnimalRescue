@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject levelEndPanel;
 
     [SerializeField] private GameObject pauseButton;
-    [SerializeField] private Text goalText;
+    [SerializeField] private TextMeshProUGUI goalText;
     [SerializeField] LevelManager levelManager;
 
 
@@ -41,7 +42,7 @@ public class UIController : MonoBehaviour
 
     public void UpdateGoal(int currentScore, int levelGoal) // Updates the animal goal counter in the UI during a level
     {
-        goalText.text = "X " + currentScore.ToString() + " / " + levelGoal;
+        goalText.text = "Animals Secured: " + currentScore.ToString() + " / " + levelGoal;
     }
 
     #region Level UI
@@ -56,8 +57,8 @@ public class UIController : MonoBehaviour
 
         else 
         {
-            pausePanel.SetActive(false);
             levelManager.ResumeGame();
+            pausePanel.SetActive(false);            
         }
         
     }

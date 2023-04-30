@@ -47,6 +47,7 @@ public class Lash : MonoBehaviour
         
     }
 
+    //Feature removed due to problematic logic
     public void AddLink() 
     {
         GameObject newLink = Instantiate(prefabLashSegment);
@@ -60,6 +61,7 @@ public class Lash : MonoBehaviour
         top = hj;
     }
 
+    //Feature removed due to problematic logic
     public void RemoveLink() 
     {
         HingeJoint2D newTop = top.gameObject.GetComponent<LashSegment>().connectedBelow.GetComponent<HingeJoint2D>();

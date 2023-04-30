@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
@@ -12,21 +13,35 @@ public class LevelManager : MonoBehaviour
 
     [Header("Level Settings")]
     [SerializeField] private int levelGoal;
-    private int animalsSecured;
+    [SerializeField] private bool timerOn = false;
+    [SerializeField] private TextMeshProUGUI timerText;
+    private int animalsSecured = 0;
+
+
+    //[SerializeField] private Sprite[] animalTypes;
     
 
     private void Start()
     {
+        ui = FindObjectOfType<UIController>();
         transition = FindObjectOfType<LevelTransitionScreen>();
         if (SceneManager.GetActiveScene().name != "Menu") 
         {
-            ui = FindObjectOfType<UIController>();
+            ui.UpdateGoal(animalsSecured, levelGoal);
+
+            
         }
+    }
+
+    public void StartLevel() 
+    {
+
     }
 
     public void ChangeScore(int num) 
     {
         animalsSecured += num;
+        ui.UpdateGoal(animalsSecured, levelGoal);
         CheckForVictory();
     }
 
@@ -34,7 +49,7 @@ public class LevelManager : MonoBehaviour
     {
         if (animalsSecured == levelGoal) 
         {
-            PauseGame();
+            ui.ShowEndPanel();
         }
     }
 

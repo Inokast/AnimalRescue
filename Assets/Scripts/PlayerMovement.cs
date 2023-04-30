@@ -70,36 +70,15 @@ public class PlayerMovement : MonoBehaviour
             lash.RemoveLink();
         }
 
-        //RotatePlayer();
-
 
         ClampVelocity();
     }
-
-    /*private void RotatePlayer()
-    {
-        Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
-        Vector2 direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
-
-        transform.up = direction;
-
-    }*/
 
     private void Rotation()
     {
 
         var step = rotationSpeed * Time.deltaTime;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetLookTowards.rotation, step);
-
-        /*
-        Vector2 predictedUp = Quaternion.AngleAxis(
-            rb.angularVelocity * Mathf.Rad2Deg * stability / angularSpeed,
-            gameObject.transform.up
-            ) * transform.up;
-
-        Vector2 torqueVector = Vector2.Reflect(predictedUp, Vector2.up);
-        rb.AddTorque(torqueVector.magnitude * angularSpeed);*/
     }
 
     public void MagnetToggle() 

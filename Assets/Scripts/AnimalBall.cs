@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimalBall : MonoBehaviour
 {
     private LevelManager levelManager;
+    public int powerLevel = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -12,20 +13,21 @@ public class AnimalBall : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();   
     }
 
-
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Goal")) 
+        if (col.gameObject.CompareTag("Goal"))
         {
+            print("Collided with goal");
             levelManager.ChangeScore(1);
         }
     }
 
-    private void OnCollisionExit2D(Collision2D col)
+    private void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Goal"))
         {
             levelManager.ChangeScore(-1);
         }
     }
+    
 }
