@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3148241598487876492}
   - component: {fileID: 8917751457787346403}
   - component: {fileID: 8203196630030336090}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: GlassDebris1
   m_TagString: Structure
   m_Icon: {fileID: 0}

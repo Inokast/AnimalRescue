@@ -162,4 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animalTypeID: 1
-  powerLevel: 3
+  powerLevel: 4

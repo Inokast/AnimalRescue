@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 465518946797833519}
   - component: {fileID: 3962711507335304710}
   - component: {fileID: 2000200156470643599}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: StoneDebris2
   m_TagString: Structure
   m_Icon: {fileID: 0}

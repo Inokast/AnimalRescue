@@ -103,7 +103,7 @@ MonoBehaviour:
   debrisPrefabs: []
   damagedSprite: {fileID: 21300000, guid: cc958119f61cba347a46e3138c8cc2ea, type: 3}
   junkedSprite: {fileID: 21300000, guid: 83c3beac8a0469d419634fa644c73b68, type: 3}
-  health: 20
+  health: 16
 --- !u!50 &608886049578494417
 Rigidbody2D:
   serializedVersion: 4

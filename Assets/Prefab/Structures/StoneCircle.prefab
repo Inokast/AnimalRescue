@@ -106,7 +106,7 @@ MonoBehaviour:
   - {fileID: 5410464113502661987, guid: fa8926e5f798618499500737b470799f, type: 3}
   damagedSprite: {fileID: 21300000, guid: 2f0b4a910fc47d648848f8d02fcedeac, type: 3}
   junkedSprite: {fileID: 21300000, guid: 65383b47881c7e94dba5ca1ab691d25b, type: 3}
-  health: 20
+  health: 15
 --- !u!50 &8266498600997991228
 Rigidbody2D:
   serializedVersion: 4

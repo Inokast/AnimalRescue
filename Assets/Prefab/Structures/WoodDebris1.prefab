@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2675186253086880978}
   - component: {fileID: 8454049279312976573}
   - component: {fileID: 9171437067095893764}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: WoodDebris1
   m_TagString: Structure
   m_Icon: {fileID: 0}
