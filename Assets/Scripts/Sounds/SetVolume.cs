@@ -1,9 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-//Assignment/Lab/Project: GameJuice Project
-//Name: Daniel Sanchez
-
 public class SetVolume : MonoBehaviour
 {
     public AudioMixer bgmMixer;

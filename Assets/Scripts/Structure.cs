@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Structure : MonoBehaviour
 {
-    [SerializeField] private GameObject debrisPrefab;
+    [SerializeField] private int structureTypeID = 0; // 0 = glass, 1 = wood, 2 = stone, 3 = metal. Used to find correct sound effect
+    [SerializeField] private GameObject[] debrisPrefabs;
     [SerializeField] private Sprite damagedSprite;
     [SerializeField] private Sprite junkedSprite;
     [SerializeField] private float health = 4f;
@@ -12,12 +13,14 @@ public class Structure : MonoBehaviour
     private float maxHealth;
     private SpriteRenderer spriteR;
     private bool canTakeDamage = false;
+    private SoundFXController sfx;
 
     private void Start()
     {
         maxHealth = health;
         spriteR = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        sfx = FindObjectOfType<SoundFXController>();
         StartCoroutine(DamageTimer());
     }
     private void TakeDamage(float damage) 
@@ -28,19 +31,85 @@ public class Structure : MonoBehaviour
 
             if (health >= maxHealth / 2 && health < maxHealth)
             {
-                spriteR.sprite = damagedSprite;
+                if (spriteR.sprite != damagedSprite) 
+                {
+                    spriteR.sprite = damagedSprite;
+                    switch (structureTypeID)
+                    {
+                        case 0:
+                            sfx.PlayGlassHit();
+                            break;
+                        case 1:
+                            sfx.PlayThudHit();
+                            break;
+                        case 2:
+                            sfx.PlayThudHit();
+                            break;
+                        case 3:
+                            sfx.PlayMetalHit();
+                            break;
+
+                        default:
+                            sfx.PlayThudHit();
+                            break;
+                    }
+                }                
             }
 
             else if (health > 0 && health < maxHealth / 2)
             {
-                spriteR.sprite = junkedSprite;
+                if (spriteR.sprite != junkedSprite) 
+                {
+                    spriteR.sprite = junkedSprite;
+                    switch (structureTypeID)
+                    {
+                        case 0:
+                            sfx.PlayGlassHit();
+                            break;
+                        case 1:
+                            sfx.PlayThudHit();
+                            break;
+                        case 2:
+                            sfx.PlayThudHit();
+                            break;
+                        case 3:
+                            sfx.PlayMetalHit();
+                            break;
+
+                        default:
+                            sfx.PlayThudHit();
+                            break;
+                    }
+                }              
             }
 
             else if (health <= 0)
             {
-                if (debrisPrefab != null)
+                if (debrisPrefabs.Length > 0)
                 {
-                    Instantiate(debrisPrefab);
+                    int random = Random.Range(0, debrisPrefabs.Length - 1);
+                    GameObject debris = Instantiate(debrisPrefabs[random]);
+                    debris.transform.position = transform.position;
+                }
+
+                switch (structureTypeID)
+                {
+                    case 0:
+                        sfx.PlayGlassBreak();
+                        break;
+                    case 1:
+                        sfx.PlayWoodBreak();
+                        break;
+                    case 2:
+                        sfx.PlayStoneBreak();
+                        break;
+                    case 3:
+                        sfx.PlayMetalBreak();
+                        break;
+
+                    default:
+                        sfx.PlayThudHit();
+                        break;
                 }
 
                 Destroy(gameObject);
@@ -64,17 +133,17 @@ public class Structure : MonoBehaviour
 
         else if (col.gameObject.CompareTag("Metal") && col.relativeVelocity.magnitude > 1) 
         {
-            TakeDamage(5);
+            TakeDamage(4);
         }
 
         else if (col.gameObject.CompareTag("Structure") && (col.relativeVelocity.magnitude > 1 || rb.velocity.magnitude > 1))
         {
-            TakeDamage(3);
+            TakeDamage(2);
         }
 
         else if (col.gameObject.CompareTag("Ground") && rb.velocity.magnitude > 1) 
         {
-            TakeDamage(3);
+            TakeDamage(2);
         }
     }
 

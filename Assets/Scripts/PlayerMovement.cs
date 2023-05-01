@@ -8,21 +8,18 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //private PlayerStats player;
     private Rigidbody2D rb;
     private Magnet magnet;
     private Lash lash;
-    //public Camera cam;
+    private SoundFXController sfx;
 
+    [Header("Player Settings")]
     public Transform targetLookTowards;
     [SerializeField] private float speed;
     [SerializeField] private float maxVelocity;
     [SerializeField] private float rotationSpeed;
     private LashSegment[] lashSegments;
-    [SerializeField] private int maxLinks = 8;
-
-    //[SerializeField] private float stability = 0.3f;
-    //[SerializeField] private float angularSpeed = 2.0f;
+    //[SerializeField] private int maxLinks = 8;
 
 
     // Start is called before the first frame update
@@ -34,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
         lash = FindObjectOfType<Lash>();
         //System.Array.Reverse(lashSegments);
         magnet = FindObjectOfType<Magnet>();
+        sfx = FindObjectOfType<SoundFXController>();
+        sfx.PlayLashOn();
 
     }
 
@@ -55,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         MoveSideways(xAxis);
         Rotation();
 
-        if (CrossPlatformInputManager.GetButtonDown("r")) 
+        /*if (CrossPlatformInputManager.GetButtonDown("r")) 
         {
             if (lash.numLinks < maxLinks) 
             {
@@ -69,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             if (lash.numLinks > 1)
             lash.RemoveLink();
         }
-
+        */
 
         ClampVelocity();
     }
@@ -87,12 +86,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (magnet.isActiveAndEnabled == true) 
         {
+            
             DeactivateMagnet();
+            sfx.PlayLashOff();
         }
 
         else 
         {
             ActivateMagnet();
+            sfx.PlayLashOn();
         }
     }
 
@@ -143,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(force);
     }
 
+    // Possible feature for the future
     /*private void Boost()
     {
         Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);

@@ -34,7 +34,7 @@ public class Lash : MonoBehaviour
                 top = hj;
             }
 
-            if (i == numLinks - 1) 
+            if (i == numLinks - 1) // sets last segment to be a magnet segment
             {
                 newSeg = Instantiate(magnet);
                 newSeg.transform.parent = transform;
@@ -47,7 +47,7 @@ public class Lash : MonoBehaviour
         
     }
 
-    //Feature removed due to problematic logic
+    //Feature removed due to problematic logic. Might work on after project is turned in
     public void AddLink() 
     {
         GameObject newLink = Instantiate(prefabLashSegment);
@@ -61,7 +61,7 @@ public class Lash : MonoBehaviour
         top = hj;
     }
 
-    //Feature removed due to problematic logic
+    //Feature removed due to problematic logic. Might work on after project is turned in
     public void RemoveLink() 
     {
         HingeJoint2D newTop = top.gameObject.GetComponent<LashSegment>().connectedBelow.GetComponent<HingeJoint2D>();

@@ -6,7 +6,6 @@ public class GoalArea : MonoBehaviour
 {
     private LevelManager levelManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
@@ -16,7 +15,6 @@ public class GoalArea : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Ball"))
         {
-            print("Collided with goal");
             levelManager.ChangeScore(1);
         }
     }

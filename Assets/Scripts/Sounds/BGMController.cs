@@ -7,9 +7,9 @@ public class BGMController : MonoBehaviour
     static public BGMController M;
 
    public AudioSource menuMusic;
-   public AudioSource levelMusic;
-   public AudioSource victoryMusic;
-   public AudioSource powerupMusic;
+   public AudioSource world1Music;
+   public AudioSource world2Music;
+   public AudioSource world3Music;
 
     void Awake()
     {
@@ -24,35 +24,61 @@ public class BGMController : MonoBehaviour
         }
     }
 
+    public void PlayMusicWithID(int songID) 
+    {
+        switch (songID)
+        {
+            case 0:
+                PlayMenuMusic();
+                break;
+
+            case 1: PlayWorld1Music();
+                break;
+
+            case 2:
+                PlayWorld2Music();
+                break;
+
+            case 3:
+                PlayWorld3Music();
+                break;
+
+
+            default:
+                PlayMenuMusic();
+                break;
+        }
+    }
+
     public void PlayMenuMusic()
     {
         StopMusic();
         menuMusic.Play();
     }
 
-    public void PlayLevelMusic()
+    public void PlayWorld1Music()
     {
         StopMusic();
-        levelMusic.Play();
+        world1Music.Play();
     }
 
-    public void PlayVictoryMusic()
+    public void PlayWorld2Music()
     {
         StopMusic();
-        victoryMusic.Play();
+        world2Music.Play();
     }
 
-    public void PlayPowerupyMusic()
+    public void PlayWorld3Music()
     {
         StopMusic();
-        powerupMusic.Play();
+        world3Music.Play();
     }
 
     public void StopMusic()
     {
         menuMusic.Stop();
-        levelMusic.Stop();
-        victoryMusic.Stop();
-        powerupMusic.Stop();
+        world1Music.Stop();
+        world2Music.Stop();
+        world3Music.Stop();
     }
 }

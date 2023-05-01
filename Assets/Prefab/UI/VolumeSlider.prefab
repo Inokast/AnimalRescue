@@ -373,17 +373,17 @@ MonoBehaviour:
   m_FillRect: {fileID: 3010431196031701636}
   m_HandleRect: {fileID: 3010431197530122743}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 0.0001
+  m_MinValue: 0.0001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3010431196878517247}
         m_TargetAssemblyTypeName: SetVolume, Assembly-CSharp
-        m_MethodName: SetMusicLevel
-        m_Mode: 4
+        m_MethodName: SetSoundLevel
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgmMixer: {fileID: 24100000, guid: ae079c3ea8e75f14498cfc7a3422b0fc, type: 2}
-  sfxMixer: {fileID: 0}
+  sfxMixer: {fileID: 24100000, guid: edcfdb5f8d253ab4299ceb4b90325aec, type: 2}
 --- !u!1 &3010431197353696871
 GameObject:
   m_ObjectHideFlags: 0

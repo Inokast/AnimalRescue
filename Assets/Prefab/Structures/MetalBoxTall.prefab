@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0535af1165662b349b5d4a8de1b70302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debrisPrefab: {fileID: 0}
+  structureTypeID: 3
+  debrisPrefabs: []
   damagedSprite: {fileID: 21300000, guid: aa144a52f7ae39640a2b95661c3f89e6, type: 3}
   junkedSprite: {fileID: 21300000, guid: ae3dc134ec5dd5a4f949e06ddd935033, type: 3}
   health: 20

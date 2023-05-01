@@ -4,62 +4,131 @@ using UnityEngine;
 
 public class SoundFXController : MonoBehaviour
 {
-    private AudioSource[] soundFX;
 
-    private AudioSource collectStar;
-    private AudioSource collectKey;
-    private AudioSource bounce;
-    private AudioSource thunk;
-    private AudioSource launch;
-    private AudioSource menuClick;
-    private AudioSource unlock;
+    [Header("UI Sounds")]
+    [SerializeField] private AudioSource select;
+    [SerializeField] private AudioSource loadingLevel;
+    [SerializeField] private AudioSource failure;
+    [SerializeField] private AudioSource levelCompleted;
 
-    /*private void Start()
+
+    [Header("Player Sounds")]
+    [SerializeField] private AudioSource lashOn;
+    [SerializeField] private AudioSource lashOff;
+    [SerializeField] private AudioSource animalSecured;
+
+    [Header("Animal Sounds")]
+    [SerializeField] private AudioSource dogSound;
+    [SerializeField] private AudioSource cowSound;
+    [SerializeField] private AudioSource birdSound;
+    [SerializeField] private AudioSource elephantSound;
+    [SerializeField] private AudioSource frogSound;
+
+    [Header("Impact Sounds")]
+    [SerializeField] private AudioSource glassHit;
+    [SerializeField] private AudioSource glassBreak;
+    [SerializeField] private AudioSource thudHit;
+    [SerializeField] private AudioSource woodBreak;
+    [SerializeField] private AudioSource stoneBreak;
+    [SerializeField] private AudioSource metalHit;
+    [SerializeField] private AudioSource metalBreak;
+
+
+
+
+    public void PlaySelect()
     {
-        soundFX = GetComponents<AudioSource>();
-
-        collectStar = soundFX[0];
-        collectKey = soundFX[1];
-        bounce = soundFX[2];
-        thunk = soundFX[3];
-        launch = soundFX[4];
-        menuClick = soundFX[5];
-        unlock = soundFX[6];
-    }*/
-
-    public void PlayCollectStar()
-    {
-        collectStar.Play();
+        select.Play();
     }
 
-    public void PlayCollectKey()
+    public void PlayLoadingLevel()
     {
-        collectKey.Play();
+        loadingLevel.Play();
     }
 
-    public void PlayBounce()
+    public void PlayFailure()
     {
-        bounce.Play();
+        failure.Play();
     }
 
-    public void PlayThunk()
+    public void PlayLevelCompleted()
     {
-        thunk.Play();
+        levelCompleted.Play();
     }
 
-    public void PlayLaunch()
+    public void PlayLashOn()
     {
-        launch.Play();
+        lashOn.Play();
     }
 
-    public void PlayMenuClick()
+    public void PlayLashOff()
     {
-        menuClick.Play();
+        lashOff.Play();
     }
 
-    public void PlayUnlock()
+    public void PlayAnimalSecured()
     {
-        unlock.Play();
+        animalSecured.Play();
     }
+
+    public void PlayDogSound()
+    {
+        dogSound.Play();
+    }
+
+    public void PlayCowSound()
+    {
+        cowSound.Play();
+    }
+
+    public void PlayBirdSound()
+    {
+        birdSound.Play();
+    }
+
+    public void PlayElephantSound()
+    {
+        elephantSound.Play();
+    }
+
+    public void PlayFrogSound()
+    {
+        frogSound.Play();
+    }
+    public void PlayGlassHit()
+    {
+        glassHit.Play();
+    }
+
+    public void PlayGlassBreak()
+    {
+        glassBreak.Play();
+    }
+
+    public void PlayThudHit()
+    {
+        thudHit.Play();
+    }
+
+    public void PlayWoodBreak()
+    {
+        woodBreak.Play();
+    }
+
+    public void PlayStoneBreak()
+    {
+        stoneBreak.Play();
+    }
+
+    public void PlayMetalHit()
+    {
+        metalHit.Play();
+    }
+    public void PlayMetalBreak()
+    {
+        metalBreak.Play();
+    }
+
+
 
 }
